@@ -1,2 +1,2 @@
 # Summary
-You will find several folders with different projects related to the Python language. Each folder contains a project for testing various features of the language. Feel free to download and test them.
+This project show us how to use the fastAPI framework for building get, post, put and delete method to be consumed from postman in Python
