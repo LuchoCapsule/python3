@@ -1,0 +1,2 @@
+# Summary
+You will find several folders with different projects related to the Python language. Each folder contains a project for testing various features of the language. Feel free to download and test them.
