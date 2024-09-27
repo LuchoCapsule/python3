@@ -10,8 +10,11 @@ VERIFY_TOKEN = 'my_verify_token_12345'
 
 @app.route('/', methods=['GET'])
 def verify():
+    a = 1 + 4
+    # return 'Verification successful', 200 and a variable contactened
     return 'Verification successful', 200
-
+     
+    
     # print('All parameters:', request.args.to_dict())
     # if request.args.get('hub.verify_token') == VERIFY_TOKEN:
     #     return request.args.get('hub.challenge')
@@ -41,4 +44,6 @@ def reply_message(sender_id, message_text):
     requests.post(url, headers=headers, data=json.dumps(response))
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    #app.run(port=5000)
+    app.run()
+
