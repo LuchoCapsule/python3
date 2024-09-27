@@ -9,16 +9,11 @@ PAGE_ACCESS_TOKEN = 'EAB0zOeDA58cBO0zbyIEZA2wsjnHSBCZBTjE57ZB2lI09C9ivJOkKG2TU9v
 VERIFY_TOKEN = 'my_verify_token_12345'
 
 @app.route('/', methods=['GET'])
-def verify():
-    a = 1 + 4
-    # return 'Verification successful', 200 and a variable contactened
-    return 'Verification successful', 200
-     
-    
-    # print('All parameters:', request.args.to_dict())
-    # if request.args.get('hub.verify_token') == VERIFY_TOKEN:
-    #     return request.args.get('hub.challenge')
-    # return 'Verification failed2'
+def verify():     
+    print('All parameters:', request.args.to_dict())
+    if request.args.get('hub.verify_token') == VERIFY_TOKEN:
+        return request.args.get('hub.challenge')
+    return 'Verification failed'
 
 
 @app.route('/', methods=['POST'])
