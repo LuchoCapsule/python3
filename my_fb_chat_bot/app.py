@@ -10,10 +10,13 @@ VERIFY_TOKEN = 'my_verify_token_12345'
 
 @app.route('/', methods=['GET'])
 def verify():
-    print('All parameters:', request.args.to_dict())
-    if request.args.get('hub.verify_token') == VERIFY_TOKEN:
-        return request.args.get('hub.challenge')
-    return 'Verification failed2'
+    return 'Verification successful', 200
+
+    # print('All parameters:', request.args.to_dict())
+    # if request.args.get('hub.verify_token') == VERIFY_TOKEN:
+    #     return request.args.get('hub.challenge')
+    # return 'Verification failed2'
+
 
 @app.route('/', methods=['POST'])
 def webhook():
