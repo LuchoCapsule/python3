@@ -15,7 +15,6 @@ def verify():
         return request.args.get('hub.challenge')
     return 'Verification failed'
 
-
 @app.route('/', methods=['POST'])
 def webhook():
     data = request.get_json()
