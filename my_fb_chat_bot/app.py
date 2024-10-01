@@ -13,7 +13,7 @@ def verify():
     print('All parameters:', request.args.to_dict())
     if request.args.get('hub.verify_token') == VERIFY_TOKEN:
         return request.args.get('hub.challenge')
-    return 'Verification failed'
+    return 'Verification failed 123'
 
 @app.route('/', methods=['POST'])
 def webhook():
