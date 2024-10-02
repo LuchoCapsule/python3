@@ -6,7 +6,10 @@ import json
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-PAGE_ACCESS_TOKEN = 'EAB0zOeDA58cBO0zbyIEZA2wsjnHSBCZBTjE57ZB2lI09C9ivJOkKG2TU9v2B7KvrLMsGnaVKDeBMRnfcwYzk6x41JVtQR4aZCCrGTVfKTqwfCpnZCUstgHJ6r4glOXOPEnrJKeLAYm77bEYRyt71J7mNYu8ZCgBmjuVwkA2byUjUIUjgkPveC2gY9A5bDezx81ywZDZD'
+# According your chatbot configuration in Facebook Developer Portal you will have to change the values of the following variables
+PAGE_ACCESS_TOKEN = 'EAAV3tdotiQ4BOxEtfbMV9ngrUBdVSZCkixtJVm0l6oOJttXQI9YuuKNIGZAWxV2tBUfyBlLTNVkzmOEZAR5tu8MGcZCZCkdZA2RCgTVp9GSwnFuUBnNaLibjDAwLyMYoQ2mZCnaw7uZBv9wlzp0xi7CZB1ZCYbaWWHy5MvFJfJqjdSIhtvI2rWZCnHxfymw9tQh9CJy2QZDZD'
+# Verify Token is a random string that you define. It is used to validate the authenticity of the request from Facebook
+# when you set up your webhook. You can set it to any value you like.
 VERIFY_TOKEN = 'my_verify_token_12345'
 
 @app.route('/', methods=['GET'])
@@ -21,10 +24,15 @@ def webhook():
     data = request.get_json()
     if data['object'] == 'page':
         for entry in data['entry']:
+            print('Entry:', entry)
             for messaging_event in entry['messaging']:
+                print('Messaging event:', messaging_event)
                 if messaging_event.get('message'):
+                    print('Message:', messaging_event['message'])
                     sender_id = messaging_event['sender']['id']
                     message_text = messaging_event['message']['text']
+                    print('Sender ID:', sender_id)
+                    print('Message text:', message_text)
                     reply_message(sender_id, message_text)
     return 'OK', 200
 
@@ -33,6 +41,7 @@ def reply_message(sender_id, message_text):
         'recipient': {'id': sender_id},
         'message': {'text': f'You said: {message_text}'}
     }
+    print('Response:', response)
     headers = {'Content-Type': 'application/json'}
     url = f'https://graph.facebook.com/v15.0/me/messages?access_token={PAGE_ACCESS_TOKEN}'
     requests.post(url, headers=headers, data=json.dumps(response))
